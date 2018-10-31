@@ -1,0 +1,23 @@
+{
+  "name": "vue-ui-common",
+  "version": "1.0.0",
+  "description": "Vue实现的常用UI组件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godheaven007/vue-ui-common.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "godheaven007",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/godheaven007/vue-ui-common/issues"
+  },
+  "homepage": "https://github.com/godheaven007/vue-ui-common#readme"
+}
