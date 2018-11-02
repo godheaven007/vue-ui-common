@@ -1,14 +1,12 @@
 <template>
-    <button class="g-button">{{msg}}</button>
+    <button class="g-button">
+        <slot></slot>
+    </button>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                msg: '按钮'
-            }
-        }
+
     }
 </script>
 
