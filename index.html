@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         :root {
             --button-height: 32px;
             --font-size: 14px;
@@ -22,18 +23,32 @@
             --border-color: #999;
             --border-color-hover: #666;
         }
+
         #app {
             margin: 50px;
         }
+
         body {
             font-size: var(--font-size);
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-button>按钮</g-button>
-    </div>
-    <script src="./src/app.js"></script>
+<div id="app">
+    <!--icon-position指定错误-->
+    <g-button icon-type="setting" icon-position="aaa">
+        按钮
+    </g-button>
+    <!--icon-position不指定，默认为left-->
+    <g-button icon-type="setting">
+        按钮
+    </g-button>
+    <!--icon-position指定为right-->
+    <g-button icon-type="setting" icon-position="right">
+        按钮
+    </g-button>
+</div>
+<script src="./src/app.js"></script>
+<script src="//at.alicdn.com/t/font_834425_wdnosf4c5t.js"></script>
 </body>
 </html>
