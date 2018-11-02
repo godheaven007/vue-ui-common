@@ -1,6 +1,7 @@
 <template>
     <button class="g-button" :class="position"><!--简写 :class="{[`icon-${iconPosition}`]: true}"-->
         <g-icon v-if="iconType" :icon-name="iconType"></g-icon>
+        <g-icon class="loading" icon-name="loading"></g-icon>
         <span class="content">
             <slot></slot>
         </span>
@@ -34,7 +35,13 @@
 </script>
 
 <style scoped lang="scss">
-
+    @keyframes loading {
+        0%{transform: rotate(0deg);}
+        100%{transform: rotate(360deg);}
+    }
+    .loading {
+        animation: loading 2s infinite linear;
+    }
     .g-button {
         display: inline-flex;
         justify-content: center;
