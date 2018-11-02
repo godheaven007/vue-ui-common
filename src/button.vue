@@ -1,8 +1,6 @@
 <template>
     <button class="g-button" :class="position"><!--简写 :class="{[`icon-${iconPosition}`]: true}"-->
-        <svg class="icon" v-if="iconType">
-            <use :xlink:href=`#i-${iconType}`></use>
-        </svg>
+        <g-icon v-if="iconType" :icon-name="iconType"></g-icon>
         <span class="content">
             <slot></slot>
         </span>
@@ -22,10 +20,14 @@
         computed: {
             position: function() {
                 let reg = /left|right/g;
-                if(reg.test(this.iconPosition)) {
-                    return 'icon-' + this.iconPosition;
+                if (!this.iconType) {
+                    return;
                 }
-                return '';
+                if (reg.test(this.iconPosition)) {
+                    return 'icon-' + this.iconPosition;
+                } else {
+                    return 'icon-left';
+                }
             }
         }
     }
@@ -52,13 +54,6 @@
         }
         &:focus {
             outline: none;
-        }
-        .icon {
-            width: 1em;
-            height: 1em;
-            vertical-align: -0.15em;
-            fill: currentColor;
-            overflow: hidden;
         }
 
         .icon {order: 1; margin-right: .3em;}
