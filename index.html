@@ -36,15 +36,31 @@
 <body>
 <div id="app">
     <!--icon-position指定错误-->
-    <g-button icon-type="setting" :is-loading="false" icon-position="aaa">
+    <g-button
+            icon-type="setting"
+            :is-loading="loading1"
+            icon-position="aaa"
+            @handle-event="loading1 = !loading1"
+    >
         按钮1
     </g-button>
+
     <!--icon-position不指定，默认为left-->
-    <g-button icon-type="setting" :is-loading="true">
+    <g-button
+            icon-type="setting"
+            :is-loading="loading2"
+            @handle-event="loading2 = !loading2"
+    >
         按钮2
     </g-button>
+
     <!--icon-position指定为right-->
-    <g-button icon-type="setting" icon-position="right" :is-loading="true">
+    <g-button
+            icon-type="setting"
+            icon-position="right"
+            :is-loading="loading3"
+            @handle-event="loading3 = !loading3"
+    >
         按钮3
     </g-button>
 </div>
