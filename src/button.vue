@@ -1,7 +1,17 @@
 <template>
     <button class="g-button" :class="position"><!--简写 :class="{[`icon-${iconPosition}`]: true}"-->
-        <g-icon v-if="iconType" :icon-name="iconType"></g-icon>
-        <g-icon class="loading" icon-name="loading"></g-icon>
+        <g-icon
+                class="icon"
+                v-if="iconType && !isLoading"
+                :icon-name="iconType"
+        >
+        </g-icon>
+        <g-icon
+                class="icon loading"
+                icon-name="loading"
+                v-if="isLoading"
+        >
+        </g-icon>
         <span class="content">
             <slot></slot>
         </span>
@@ -16,10 +26,14 @@
             iconPosition: {
                 type: String,
                 default: 'left'
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
-            position: function() {
+            position: function () {
                 let reg = /left|right/g;
                 if (!this.iconType) {
                     return;
@@ -36,12 +50,18 @@
 
 <style scoped lang="scss">
     @keyframes loading {
-        0%{transform: rotate(0deg);}
-        100%{transform: rotate(360deg);}
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
+
     .loading {
         animation: loading 2s infinite linear;
     }
+
     .g-button {
         display: inline-flex;
         justify-content: center;
@@ -63,11 +83,22 @@
             outline: none;
         }
 
-        .icon {order: 1; margin-right: .3em;}
-        .content{order: 2;}
-        &.icon-right{
-            .icon{order: 2; margin-right: 0; margin-left: .3em;}
-            .content{order: 1;}
+        .icon {
+            order: 1;
+            margin-right: .3em;
+        }
+        .content {
+            order: 2;
+        }
+        &.icon-right {
+            .icon {
+                order: 2;
+                margin-right: 0;
+                margin-left: .3em;
+            }
+            .content {
+                order: 1;
+            }
         }
     }
 </style>

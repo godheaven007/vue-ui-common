@@ -35,21 +35,18 @@
 </head>
 <body>
 <div id="app">
-    <g-button>按钮</g-button>
     <!--icon-position指定错误-->
-    <g-button icon-type="setting" icon-position="aaa">
-        按钮
+    <g-button icon-type="setting" :is-loading="false" icon-position="aaa">
+        按钮1
     </g-button>
     <!--icon-position不指定，默认为left-->
-    <g-button icon-type="setting">
-        按钮
+    <g-button icon-type="setting" :is-loading="true">
+        按钮2
     </g-button>
     <!--icon-position指定为right-->
-    <g-button icon-type="setting" icon-position="right">
-        按钮
+    <g-button icon-type="setting" icon-position="right" :is-loading="true">
+        按钮3
     </g-button>
-    <!--g-icon组件-->
-    <g-icon icon-name="setting"></g-icon>
 </div>
 <script src="./src/app.js"></script>
 <script src="//at.alicdn.com/t/font_834425_wdnosf4c5t.js"></script>
