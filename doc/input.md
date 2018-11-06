@@ -19,3 +19,6 @@
 
 2. input之readonly与disabled区别
     disabled无法focus，readonly可focus
+
+3. input事件
+    vue中针对input的事件，需写成<input @focus="doFocus" @change="doChange" @blur="doBlur" @input="doInput"/>

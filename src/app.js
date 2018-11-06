@@ -16,5 +16,13 @@ new Vue({
         loading1: false,
         loading2: true,
         loading3: false
+    },
+    methods: {
+        doInput(event) {
+            console.log(event.target);
+        },
+        doFocus() {
+            console.log('focus');
+        }
     }
 });
