@@ -61,8 +61,7 @@
         </g-button>
 
         <!--icon-position指定为right-->
-        <g-button
-                icon-type="setting"
+        <g-button icon-type="setting"
                 icon-position="right"
                 :is-loading="loading3"
                 @handle-event="loading3 = !loading3"
@@ -81,8 +80,21 @@
         </g-button-group>
     </div>
 
+    <!--输入框-->
+    <div class="box">
+        <g-input text="Normal"></g-input>
+    </div>
+    <div class="box">
+        <g-input text="Disabled" disabled></g-input>
+    </div>
+    <div class="box">
+        <g-input text="ReadOnly" readonly></g-input>
+    </div>
+    <div class="box">
+        <g-input text="Error" error-msg="您输入有误!"></g-input>
+    </div>
 </div>
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_834425_wdnosf4c5t.js"></script>
+<script src="//at.alicdn.com/t/font_834425_90y65bt6pnu.js"></script>
 </body>
 </html>
