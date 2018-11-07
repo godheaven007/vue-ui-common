@@ -1,13 +1,37 @@
 <template>
     <div class="g-toast">
-        go
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "GToast"
+        name: "GToast",
+        props: {
+            // 自动关闭
+            autoClose: {
+                type: Boolean,
+                default: true
+            },
+            // 几秒后自动关闭
+            autoCloseDelay: {
+                type: Number,
+                default: 3
+            }
+        },
+        mounted() {
+            if(this.autoClose) {
+                setTimeout(()=>{
+                    this.close();
+                }, this.autoCloseDelay * 1000)
+            }
+        },
+        methods: {
+            close() {
+                this.$el.remove();
+                this.$destroy();
+            }
+        }
     }
 </script>
 

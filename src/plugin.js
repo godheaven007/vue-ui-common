@@ -2,7 +2,7 @@
 import Toast from './toast';
 export default {
     install(Vue, options) {
-        // 生成toast组件
+        // 生成toast实例
         Vue.prototype.$toast = function(message) {
             let Constructor = Vue.extend(Toast);
             let toast = new Constructor();
