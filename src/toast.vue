@@ -1,8 +1,9 @@
 <template>
     <div class="g-toast">
-        <slot></slot>
-        <div class="line"></div>
-        <span class="close" v-if="closeBtn" @click="handleCloseClick">{{closeBtn.text}}</span>
+        <div class="g-toast-content">
+            <slot></slot>
+        </div>
+        <div class="g-toast-btn" v-if="closeBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
     </div>
 </template>
 
@@ -18,7 +19,7 @@
             // 几秒后自动关闭
             autoCloseDelay: {
                 type: Number,
-                default: 30
+                default: 3
             },
             // 关闭按钮
             closeBtn: {
@@ -54,29 +55,32 @@
 </script>
 
 <style lang="scss" scoped>
-    $fontSize: 14px;
-    $toastHeight: 40px;
-    $toastBg: rgba(0, 0, 0, .75);
     .g-toast {
         position: fixed;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        align-items: center;
-        font-size: $fontSize;
-        height: $toastHeight;
-        line-height: 1.8;
+        font-size: 14px;
+        min-width: 150px;
+        max-width: 240px;
         color: #fff;
-        padding: 0 16px;
-        background-color: $toastBg;
+        background-color: rgba(0, 0, 0, .75);
         box-shadow: 0 0 3px rgba(0, 0, 0, .5);
         border-radius: 4px;
-        > .line {
-            width: 1px;
-            height: 100%;
-            background-color: #999;
-            margin: 0 16px;
+        .g-toast-content{
+            flex: 1;
+            padding: 8px 16px;
+        }
+        .g-toast-btn {
+            flex: none;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            cursor: pointer;
+            border-left: 1px solid #999;
+            white-space: nowrap;
         }
     }
 </style>

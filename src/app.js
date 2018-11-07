@@ -30,7 +30,7 @@ new Vue({
             console.log('focus');
         },
         showToast() {
-            this.$toast('按钮!');
+            this.$toast('发送发送发送发送发送发送');
         }
     },
 });
