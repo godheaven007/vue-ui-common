@@ -4,11 +4,16 @@ import Button from './button';
 import Icon from './icon';
 import ButtonGroup from './button-group';
 import Input from './input';
+import Toast from './toast';
+import Plugin from './plugin';
+
 
 Vue.component('g-button', Button);
 Vue.component('g-icon', Icon);
 Vue.component('g-button-group', ButtonGroup);
 Vue.component('g-input', Input);
+Vue.component('g-toast', Toast);
+Vue.use(Plugin);
 
 new Vue({
     el: '#app',
@@ -23,6 +28,9 @@ new Vue({
         },
         doFocus() {
             console.log('focus');
+        },
+        showToast() {
+            this.$toast('按钮!');
         }
-    }
+    },
 });
