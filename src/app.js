@@ -30,8 +30,9 @@ new Vue({
             console.log('focus');
         },
         showToast() {
-            this.$toast('请求成功!', {
+            this.$toast('<h1>清秋分解</h1>', {
                 showCloseBtn: true,
+                enableHtml: true,
                 closeBtn: {
                     text: '确认',
                     callback: function(toast) {

@@ -1,7 +1,8 @@
 <template>
     <div class="g-toast">
         <div class="g-toast-content">
-            <slot></slot>
+            <slot v-if="!enableHtml"></slot>
+            <div v-else v-html="$slots.default"></div>
         </div>
         <div class="g-toast-btn" v-if="showCloseBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
     </div>
@@ -33,10 +34,15 @@
             showCloseBtn: {
                 type: Boolean,
                 default: false
+            },
+            // 是否开启HTML(确保所传html是可信的，否则容易导致XSS攻击)
+            enableHtml: {
+                type: Boolean,
+                default: false
             }
         },
         created() {
-            console.log(this.closeBtn,333);
+            console.log(this.$slots,333);
         },
         mounted() {
             if (this.autoClose) {
@@ -65,6 +71,7 @@
 </script>
 
 <style lang="scss" scoped>
+    $toast-min-height: 40px;
     .g-toast {
         position: fixed;
         top: 0;
@@ -72,8 +79,10 @@
         transform: translateX(-50%);
         display: flex;
         font-size: 14px;
+        min-height: $toast-min-height;
         min-width: 150px;
         max-width: 240px;
+        line-height: 1.72;
         color: #fff;
         background-color: rgba(0, 0, 0, .75);
         box-shadow: 0 0 3px rgba(0, 0, 0, .5);
