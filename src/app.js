@@ -29,13 +29,22 @@ new Vue({
         doFocus() {
             console.log('focus');
         },
-        showToast() {
+        showToast1() {
+            this.showToast('top');
+        },
+        showToast2() {
+            this.showToast('middle');
+        },
+        showToast3() {
+            this.showToast('bottom');
+        },
+        showToast(position) {
             this.$toast('提示信息', {
                 showCloseBtn: true,
-                position: 'bottom',
+                position,
                 // enableHtml: true,
-                autoClose: true,
-                autoCloseDelay: 30,
+                // autoClose: true,
+                // autoCloseDelay: 30,
                 closeBtn: {
                     text: '确认',
                     callback: function(toast) {

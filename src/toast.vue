@@ -1,10 +1,12 @@
 <template>
-    <div class="g-toast" :class="showPosition">
-        <div class="g-toast-content">
-            <slot v-if="!enableHtml"></slot>
-            <div v-else v-html="$slots.default"></div>
+    <div class="g-toast-wrap" :class="showPosition">
+        <div class="g-toast">
+            <div class="g-toast-content">
+                <slot v-if="!enableHtml"></slot>
+                <div v-else v-html="$slots.default"></div>
+            </div>
+            <div class="g-toast-btn" v-if="showCloseBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
         </div>
-        <div class="g-toast-btn" v-if="showCloseBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
     </div>
 </template>
 
@@ -20,7 +22,7 @@
             // 几秒后自动关闭
             autoCloseDelay: {
                 type: Number,
-                default: 50
+                default: 3
             },
             // 关闭按钮
             closeBtn: {
@@ -49,7 +51,7 @@
             }
         },
         computed: {
-            showPosition: function() {
+            showPosition: function () {
                 return {[`g-toast-${this.position}`]: true};
             }
         },
@@ -74,7 +76,7 @@
             },
             handleCloseClick() {
                 this.close();
-                if(this.closeBtn && Object.prototype.toString.call(this.closeBtn.callback) === '[object Function]') {
+                if (this.closeBtn && Object.prototype.toString.call(this.closeBtn.callback) === '[object Function]') {
                     // this => 当前toast组件实例
                     this.closeBtn.callback(this);
                 }
@@ -85,32 +87,49 @@
 
 <style lang="scss" scoped>
     $toast-min-height: 40px;
-
+    $animation-duration: 1.5s;
     @keyframes fadeInDown {
-        0% {opacity: 0; transform: translate(-50%, -100%);}
-        100% {opacity: 1; transform: translate(-50%, 0);}
+        0% {opacity: 0; transform: translateY(-100%);}
+        100% {opacity: 1; transform: translateY(0);}
     }
+
     @keyframes fadeIn {
-        0% {opacity: 0;}
-        100% {opacity: 1;}
+        0% { opacity: 0; }
+        100% { opacity: 1; }
     }
-    @keyframes fadeOut {
-        0% {opacity: 1;}
-        100% {opacity: 0;}
-    }
+
     @keyframes fadeInUp {
-        0% {opacity: 0; transform: translate(-50%, 100%);}
-        100% {opacity: 1; transform: translate(-50%, 0);}
+        0% { opacity: 0; transform: translateY(100%);}
+        100% { opacity: 1; transform: translateY(0);}
     }
-    .fadeInDown {
-        animation: fadeInDown;
-    }
-    .fadeInUp {
-        animation: fadeInUp
-    }
-    .g-toast {
+    .g-toast-wrap {
         position: fixed;
         left: 50%;
+        transform: translateX(-50%);
+        &.g-toast-top {
+            top: 0;
+            .g-toast {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                animation: fadeInDown $animation-duration;
+            }
+        }
+        &.g-toast-middle {
+            transform: translate(-50%, -50%);
+            .g-toast {
+                animation: fadeIn $animation-duration;
+            }
+        }
+        &.g-toast-bottom {
+            bottom: 0;
+            .g-toast {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                animation: fadeInUp $animation-duration;
+            }
+        }
+    }
+    .g-toast {
         display: flex;
         font-size: 14px;
         min-height: $toast-min-height;
@@ -121,7 +140,7 @@
         background-color: rgba(0, 0, 0, .75);
         box-shadow: 0 0 3px rgba(0, 0, 0, .5);
         border-radius: 4px;
-        .g-toast-content{
+        .g-toast-content {
             flex: 1;
             padding: 8px 16px;
             text-align: center;
@@ -135,20 +154,6 @@
             cursor: pointer;
             border-left: 1px solid #999;
             white-space: nowrap;
-        }
-        &.g-toast-top {
-            top: 0;
-            left: 50%;
-            animation: fadeInDown 1s;
-        }
-        &.g-toast-middle {
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: fadeIn 1s;
-        }
-        &.g-toast-bottom {
-            bottom: 0;
-            animation: fadeInUp 1s;
         }
     }
 </style>
