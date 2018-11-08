@@ -34,6 +34,8 @@ new Vue({
                 showCloseBtn: true,
                 position: 'middle',
                 // enableHtml: true,
+                autoClose: true,
+                autoCloseDelay: 30,
                 closeBtn: {
                     text: '确认',
                     callback: function(toast) {
