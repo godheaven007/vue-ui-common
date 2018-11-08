@@ -3,7 +3,7 @@
         <div class="g-toast-content">
             <slot></slot>
         </div>
-        <div class="g-toast-btn" v-if="closeBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
+        <div class="g-toast-btn" v-if="showCloseBtn" @click="handleCloseClick">{{closeBtn.text}}</div>
     </div>
 </template>
 
@@ -19,21 +19,25 @@
             // 几秒后自动关闭
             autoCloseDelay: {
                 type: Number,
-                default: 3
+                default: 50
             },
             // 关闭按钮
             closeBtn: {
                 type: Object,
-                default: () => ({
-                    text: '关闭',
-                    callback: () => {
-
+                default() {
+                    return {
+                        text: '关闭',
+                        callback: undefined
                     }
-                })
+                }
+            },
+            showCloseBtn: {
+                type: Boolean,
+                default: false
             }
         },
         created() {
-            console.log(this.closeBtn);
+            console.log(this.closeBtn,333);
         },
         mounted() {
             if (this.autoClose) {
@@ -49,6 +53,9 @@
             },
             handleCloseClick() {
                 this.close();
+                if(this.closeBtn && Object.prototype.toString.call(this.closeBtn.callback) === '[object Function]') {
+                    this.closeBtn.callback();
+                }
             }
         }
     }
@@ -71,6 +78,7 @@
         .g-toast-content{
             flex: 1;
             padding: 8px 16px;
+            text-align: center;
         }
         .g-toast-btn {
             flex: none;

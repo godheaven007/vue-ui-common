@@ -30,7 +30,15 @@ new Vue({
             console.log('focus');
         },
         showToast() {
-            this.$toast('发送发送发送发送发送发送');
+            this.$toast('请求成功!', {
+                showCloseBtn: true,
+                closeBtn: {
+                    text: '确认',
+                    callback: function() {
+                        console.log('被我关闭了！');
+                    }
+                }
+            });
         }
     },
 });
