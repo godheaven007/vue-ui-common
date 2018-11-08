@@ -1,5 +1,5 @@
 <template>
-    <div class="g-toast">
+    <div class="g-toast" :class="showPosition">
         <div class="g-toast-content">
             <slot v-if="!enableHtml"></slot>
             <div v-else v-html="$slots.default"></div>
@@ -39,6 +39,18 @@
             enableHtml: {
                 type: Boolean,
                 default: false
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'middle', 'bottom'].indexOf(value) >= 0;
+                }
+            }
+        },
+        computed: {
+            showPosition: function() {
+                return {[`g-toast-${this.position}`]: true};
             }
         },
         created() {
@@ -74,9 +86,6 @@
     $toast-min-height: 40px;
     .g-toast {
         position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
         display: flex;
         font-size: 14px;
         min-height: $toast-min-height;
@@ -101,6 +110,21 @@
             cursor: pointer;
             border-left: 1px solid #999;
             white-space: nowrap;
+        }
+        &.g-toast-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &.g-toast-middle {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        &.g-toast-bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 </style>
