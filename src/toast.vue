@@ -54,7 +54,7 @@
             }
         },
         created() {
-            console.log(this.$slots,333);
+            // console.log(this.$slots,333);
         },
         mounted() {
             if (this.autoClose) {
@@ -69,6 +69,7 @@
             },
             close() {
                 this.$el.remove();
+                this.$emit('reset');
                 this.$destroy();
             },
             handleCloseClick() {
