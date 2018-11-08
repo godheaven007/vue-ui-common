@@ -84,8 +84,32 @@
 
 <style lang="scss" scoped>
     $toast-min-height: 40px;
+
+    @keyframes fadeInDown {
+        0% {opacity: 0; transform: translate(-50%, -100%);}
+        100% {opacity: 1; transform: translate(-50%, 0);}
+    }
+    @keyframes fadeIn {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    @keyframes fadeOut {
+        0% {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    @keyframes fadeInUp {
+        0% {opacity: 0; transform: translate(-50%, 100%);}
+        100% {opacity: 1; transform: translate(-50%, 0);}
+    }
+    .fadeInDown {
+        animation: fadeInDown;
+    }
+    .fadeInUp {
+        animation: fadeInUp
+    }
     .g-toast {
         position: fixed;
+        left: 50%;
         display: flex;
         font-size: 14px;
         min-height: $toast-min-height;
@@ -114,17 +138,16 @@
         &.g-toast-top {
             top: 0;
             left: 50%;
-            transform: translateX(-50%);
+            animation: fadeInDown 1s;
         }
         &.g-toast-middle {
             top: 50%;
-            left: 50%;
             transform: translate(-50%, -50%);
+            animation: fadeIn 1s;
         }
         &.g-toast-bottom {
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            animation: fadeInUp 1s;
         }
     }
 </style>

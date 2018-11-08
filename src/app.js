@@ -32,7 +32,7 @@ new Vue({
         showToast() {
             this.$toast('提示信息', {
                 showCloseBtn: true,
-                position: 'middle',
+                position: 'bottom',
                 // enableHtml: true,
                 autoClose: true,
                 autoCloseDelay: 30,
