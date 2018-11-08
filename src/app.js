@@ -34,8 +34,9 @@ new Vue({
                 showCloseBtn: true,
                 closeBtn: {
                     text: '确认',
-                    callback: function() {
+                    callback: function(toast) {
                         console.log('被我关闭了！');
+                        toast.test();
                     }
                 }
             });

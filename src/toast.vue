@@ -26,8 +26,7 @@
                 type: Object,
                 default() {
                     return {
-                        text: '关闭',
-                        callback: undefined
+                        text: '关闭'
                     }
                 }
             },
@@ -47,6 +46,9 @@
             }
         },
         methods: {
+            test() {
+                console.log('扩展功能接口预留!');
+            },
             close() {
                 this.$el.remove();
                 this.$destroy();
@@ -54,7 +56,8 @@
             handleCloseClick() {
                 this.close();
                 if(this.closeBtn && Object.prototype.toString.call(this.closeBtn.callback) === '[object Function]') {
-                    this.closeBtn.callback();
+                    // this => 当前toast组件实例
+                    this.closeBtn.callback(this);
                 }
             }
         }
