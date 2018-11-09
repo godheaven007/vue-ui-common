@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+    <title>sync 修饰符</title>
+    <style>
+        .style {
+            width: 400px;
+            padding: 30px 20px 30px 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="details">
+        <!--这里绑定的是一个对象-->
+        <my-component v-bind.sync="animal">
+
+        </my-component>
+        <button @click="toggle">切换</button>
+    </div>
+</div>
+<script>
+    var myComponent = {
+        template: `<div class="style" v-if="showFlag">
+                    <p>测试文字</p>
+                    <button @click.stop="close">关闭</button>
+                 </div>`,
+        props: ['showFlag', 'name'],
+        mounted() {
+            console.log(this.name);
+        },
+        methods: {
+            close() {
+                this.$emit('update:showFlag', false);
+                this.$emit('update:name', 'dog');
+            }
+        }
+    };
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            animal: {
+                showFlag: true,
+                name: 'cat'
+            }
+        },
+        components: {
+            myComponent
+        },
+        methods: {
+            toggle() {
+                this.animal.showFlag = !this.animal.showFlag;
+            }
+        }
+    })
+</script>
+</body>
+</html>
