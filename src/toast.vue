@@ -1,6 +1,7 @@
 <template>
     <div class="g-toast-wrap" :class="showPosition">
         <div class="g-toast">
+            <!--<div class="line" ref="test"></div>-->
             <div class="g-toast-content">
                 <slot v-if="!enableHtml"></slot>
                 <div v-else v-html="$slots.default"></div>
@@ -64,6 +65,12 @@
                     this.close();
                 }, this.autoCloseDelay * 1000)
             }
+            // 通过获取元素高度，测试Vue.nextTick
+            // let height = this.$refs.test;
+            // this.$nextTick(function() {
+            //     console.log(height.getBoundingClientRect());
+            // });
+            // console.log(height.getBoundingClientRect(),222);
         },
         methods: {
             test() {
@@ -140,6 +147,11 @@
         background-color: rgba(0, 0, 0, .75);
         box-shadow: 0 0 3px rgba(0, 0, 0, .5);
         border-radius: 4px;
+        .line {
+            width: 2px;
+            height: 20px;
+            background-color: #f00;
+        }
         .g-toast-content {
             flex: 1;
             padding: 8px 16px;
