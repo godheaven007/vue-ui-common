@@ -6,7 +6,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
-    <title>sync 修饰符</title>
     <style>
         .style {
             width: 400px;
@@ -19,6 +18,13 @@
 <body>
 <div id="app">
     <div class="details">
+        <!--first-->
+        <!--<my-component :show="showFlag" @handle="modify"></my-component>-->
+
+        <!--second-->
+        <!--<my-component :show="showFlag" @update:show="modify"></my-component>-->
+
+        <!--third-->
         <my-component :show.sync="showFlag"></my-component>
         <button @click="toggle">切换</button>
     </div>
@@ -32,7 +38,14 @@
         props: ['show'],
         methods: {
             close() {
-                this.$emit('update:show', false);
+                // first
+                // this.$emit('handle', false);
+
+                // second
+                // this.$emit('update:show', false);
+
+                // third
+                this.$emit('update:show', false)
             }
         }
     };
@@ -48,6 +61,9 @@
         methods: {
             toggle() {
                 this.showFlag = !this.showFlag;
+            },
+            modify(flag) {
+                this.showFlag = flag;
             }
         }
     })
