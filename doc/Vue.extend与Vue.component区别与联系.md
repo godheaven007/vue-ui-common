@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>https://segmentfault.com/a/1190000010095089</h1>
     <div id="app">
         <!--<comp>555</comp>-->
         <aaa></aaa>
